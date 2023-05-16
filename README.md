@@ -8,7 +8,7 @@
 - [ ] Déconnexion
 
 
-- [ ] Fonctionnalités d'un administrateur
+# Fonctionnalités d'un administrateur
 - [ ] Liste des spécialités
 - [ ] Sélection d'une psécialité par son id
 - [ ] Insertion d'une nouvelle spécialité
@@ -17,17 +17,17 @@
 - [ ] Info : présente un ensemble de tableaux avec leurs données
 
  
-- [ ] Fonctionnalités d'un praticien
+# Fonctionnalités d'un praticien
 - [ ] Liste de mes disponibilités
 - [ ] Ajout de nouvelles dispos
 - [ ] Liste de mes rdv avec le nom des patients
 - [ ] Liste de mes patients sans doublon
 
 
-- [ ] Fonctionnalités d'un patient
+# Fonctionnalités d'un patient
 - [ ] Mon compte
 - [ ] Liste de mes rdv
 - [ ] Prendre un rdv avec un praticien
 
-
+# Améliorations
 - [ ] Innovations éventuelles : annuler un rdv, modifier la manière d'ajouter des dispos, se désinscrire
