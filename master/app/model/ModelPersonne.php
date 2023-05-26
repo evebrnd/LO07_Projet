@@ -4,9 +4,9 @@
 require_once 'Model.php';
 
 class ModelPersonne {
-    public const ADMINISTRATEUR = 0;
-    public const PRATICIEN = 1;
-    public const PATIENT = 2;
+    const ADMINISTRATEUR = 0;
+    const PRATICIEN = 1;
+    const PATIENT = 2;
     private $id, $nom, $prenom,$adresse, $login, $password, $statut, $specialite_id;
 
     public function __construct($id = NULL, $nom = NULL, $prenom = NULL, $adresse = NULL, $login = NULL, $password = NULL, $statut = NULL, $specialite_id = NULL)
@@ -30,7 +30,7 @@ class ModelPersonne {
         return $this->adresse;
     }
 
-    public function setAdresse($adresse): void
+    public function setAdresse($adresse)
     {
         $this->adresse = $adresse;
     }
@@ -40,7 +40,7 @@ class ModelPersonne {
         return $this->id;
     }
 
-    public function setId($id): void
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -50,7 +50,7 @@ class ModelPersonne {
         return $this->login;
     }
 
-    public function setLogin($login): void
+    public function setLogin($login)
     {
         $this->login = $login;
     }
@@ -60,7 +60,7 @@ class ModelPersonne {
         return $this->nom;
     }
 
-    public function setNom($nom): void
+    public function setNom($nom)
     {
         $this->nom = $nom;
     }
@@ -70,7 +70,7 @@ class ModelPersonne {
         return $this->password;
     }
 
-    public function setPassword($password): void
+    public function setPassword($password)
     {
         $this->password = $password;
     }
@@ -80,7 +80,7 @@ class ModelPersonne {
         return $this->prenom;
     }
 
-    public function setPrenom($prenom): void
+    public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
     }
@@ -90,7 +90,7 @@ class ModelPersonne {
         return $this->specialite_id;
     }
 
-    public function setSpecialiteId($specialite_id): void
+    public function setSpecialiteId($specialite_id)
     {
         $this->specialite_id = $specialite_id;
     }
@@ -100,7 +100,7 @@ class ModelPersonne {
         return $this->statut;
     }
 
-    public function setStatut($statut): void
+    public function setStatut($statut)
     {
         $this->statut = $statut;
     }

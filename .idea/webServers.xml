@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="93774073-c511-4e87-8c93-a0e5b5e55e23" name="dev-isi" url="http://dev-isi.utt.fr/~bernhare/lo07_tp">
+        <fileTransfer rootFolder="/home/etu/bernhare/www/lo07_tp" accessType="SFTP" host="dev-isi.utt.fr" port="22" sshConfigId="156094cf-5448-424a-9226-09c6db7df3d6" sshConfig="bernhare@dev-isi.utt.fr:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,4 +1,3 @@
-
 <!-- ----- debut config -->
 <?php
 
@@ -23,24 +22,21 @@ if (LOCAL) {
     $username = 'root';
     $password = 'root';
 }
- 
+
 // chemin absolu vers le répertoire du projet SUR DEV-ISI 
 $root = dirname(dirname(__DIR__)) . "/";
 
 
 if (DEBUG) {
- echo ("<ul>");
- echo (" <li>dsn = $dsn</li>");
- echo (" <li>username = $username</li>");
- echo (" <li>password = $password</li>");
- echo ("<li>---</li>");
- echo (" <li>root = $root</li>");
+    echo ("<ul>");
+    echo (" <li>dsn = $dsn</li>");
+    echo (" <li>username = $username</li>");
+    echo (" <li>password = $password</li>");
+    echo ("<li>---</li>");
+    echo (" <li>root = $root</li>");
 
- echo ("</ul>");
+    echo ("</ul>");
 }
 ?>
 
 <!-- ----- fin config -->
-
-
-
