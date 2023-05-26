@@ -108,11 +108,38 @@ class ModelPersonne {
 
 
     // ------ Fonctions de la classe
-
-
-
-
-
+    // permet d'avoir l'id et la spécialité
+    public static function getSpecialite() {
+        try {
+            $database = Model::getInstance();
+            $query = "select id, specialite from doctolib_base";
+            $statement = $database->prepare($query);
+            $statement->execute();
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelVin");
+            return $results;
+        } 
+        catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+           }
+ }
+     // pour selectionner un id
+     public static function getOne($id) {
+        try {
+            $database = Model::getInstance();
+            $query = "select * from doctolib_base where id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute([
+              'id' => $id
+            ]);
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelProducteur");
+            return $results;
+        } 
+        catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
 
 }
 ?>
