@@ -1,4 +1,4 @@
-<!-- ----- début viewId -->
+<!-- ----- début viewIdSpe -->
 <?php
 require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
 ?>
@@ -22,7 +22,7 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
         </select>
       </div>
       <p />
-      <button class="btn btn-primary" type="submit">Submit form</button>
+      <button class="btn btn-primary" type="submit">Valider</button>
     </form>
     <br>
     <p />
@@ -30,4 +30,4 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
 
   <?php include $root . '/app/view/fragment/fragmentDoctolibFooter.html'; ?>
 
-  <!-- ----- fin viewId -->
+  <!-- ----- fin viewIdSpe -->

@@ -86,27 +86,31 @@ class ModelSpecialite
             return NULL;
         }
     }
-    /*
-    public static function getAll()
-    {
+
+    public static function insert($label) {
         try {
-            $database = Model::getInstance();
-            $query = "select * from specialite";
-            $statement = $database->prepare($query);
-            $statement->execute();
-            $results = $statement->fetchAll(PDO::FETCH_ASSOC);
-            $attributes = array_keys($results[0]); // Obtient les noms des attributs
-            $data = array(
-                'attributes' => $attributes,
-                'tuples' => $results
-            );
-            return $data;
+         $database = Model::getInstance();
+      
+         // recherche de la valeur de la clé = max(id) + 1
+         $query = "select max(id) from specialite";
+         $statement = $database->query($query);
+         $tuple = $statement->fetch();
+         $id = $tuple['0'];
+         $id++;
+      
+         // ajout d'un nouveau tuple;
+         $query = "insert into specialite value (:id, :label)";
+         $statement = $database->prepare($query);
+         $statement->execute([
+           'id' => $id,
+           'label' => $label
+         ]);
+         return $id;
         } catch (PDOException $e) {
-            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return NULL;
+         printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+         return -1;
         }
-    }
-    */
+       }
 }
 ?>
 

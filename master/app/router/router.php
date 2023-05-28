@@ -31,7 +31,6 @@ switch ($action) {
   case "speReadId":
   case "speCreate":
   case "speCreated":
-  case "speDelete":
     ControllerAdmin::$action($args);
     break;
 

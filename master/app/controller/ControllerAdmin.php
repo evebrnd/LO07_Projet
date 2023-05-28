@@ -20,6 +20,7 @@ class ControllerAdmin
         require($vue);
     }
 
+
     // Affiche un formulaire pour sélectionner un id qui existe
     public static function speReadId($args)
     {
@@ -29,10 +30,9 @@ class ControllerAdmin
         if (DEBUG) echo ("ControllerSpecialite:speReadId: target = $target</br>");
 
         include 'config.php';
-        $vue = $root . '/app/view/admin/viewId.php';
+        $vue = $root . '/app/view/admin/viewIdSpecialite.php';
         require($vue);
     }
-
 
 
     // Affiche une spe particulière (id)
@@ -44,6 +44,30 @@ class ControllerAdmin
         // ----- Construction chemin de la vue
         include 'config.php';
         $vue = $root . '/app/view/admin/viewAllSpecialite.php';
+        require($vue);
+    }
+
+    // Affiche le formulaire de creation d'une spe
+    public static function speCreate()
+    {
+        // ----- Construction chemin de la vue
+        include 'config.php';
+        $vue = $root . '/app/view/admin/viewInsertSpecialite.php';
+        require($vue);
+    }
+
+
+    // Affiche un formulaire pour récupérer les informations d'un nouveau vin.
+    // La clé est gérée par le systeme et pas par l'internaute
+    public static function speCreated()
+    {
+        // ajouter une validation des informations du formulaire
+        $results = ModelSpecialite::insert(
+            htmlspecialchars($_GET['label'])
+        );
+        // ----- Construction chemin de la vue
+        include 'config.php';
+        $vue = $root . '/app/view/admin/viewInsertedSpecialite.php';
         require($vue);
     }
 }
