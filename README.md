@@ -21,7 +21,7 @@ Ce projet a été réalisé par :
 - [X] Sélection d'une spécialité par son id
 - [X] Insertion d'une nouvelle spécialité
 - [X] Liste des praticiens avec leur spécialité
-- [ ] Nombre de praticiens par patient
+- [X] Nombre de praticiens par patient
 - [ ] Info : présente un ensemble de tableaux avec leurs données
 
  
