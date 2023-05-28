@@ -1,0 +1,72 @@
+<!-- ----- début fragmentDoctolibMenu -->
+
+<nav class="navbar navbar-expand-lg bg-primary fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="router.php?action=doctolibAccueil">BERNHARD-ROOM</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="router.php?action=doctolibAccueil">Eve TESTTTT</a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <!-------- ADMINISTRATEUR -------->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrateur</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="router.php?action=adminReadAll">Liste des spécialités</a></li>
+            <li><a class="dropdown-item" href="router.php?action=adminReadId&target=adminReadOne">Sélection d'une spécialité par son id</a></li>
+            <li><a class="dropdown-item" href="router.php?action=adminCreate">Insertion d'une nouvelle specialité</a></li>
+            <div class="dropdown-divider"></div> <!-- Trait de séparation -->
+            <li><a class="dropdown-item" href="router.php?action=adminReadId&target=adminDelete">Liste des praticiens avec leur spécialité</a></li>
+            <li><a class="dropdown-item" href="router.php?action=adminReadId&target=adminDelete">Nombre de praticiens par patient</a></li>
+            <div class="dropdown-divider"></div> <!-- Trait de séparation -->
+            <li><a class="dropdown-item" href="router.php?action=adminReadId&target=adminDelete">Info</a></li>
+          </ul>
+        </li>
+
+        <!-------- PRATICIEN -------->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">Praticien</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="router.php?action=producteurReadAll">Liste de mes disponibilités</a></li>
+            <li><a class="dropdown-item" href="router.php?action=producteurReadId&target=producteurReadOne">Ajout de nouvelles fonctionnalités</a></li>
+            <div class="dropdown-divider"></div> <!-- Trait de séparation -->
+            <li><a class="dropdown-item" href="router.php?action=producteurCreate">Liste des rendez-vous avec le nom des patients</a></li>
+            <li><a class="dropdown-item" href="router.php?action=producteurListeRegions">Liste de mes patients (sans doublon)</a></li>
+
+          </ul>
+        </li>
+
+        <!-------- PATIENT -------->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Patient</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="router.php?action=recolte">Mon Compte</a></li>
+            <li><a class="dropdown-item" href="router.php?action=recolte2">Liste de mes rendez-vous</a></li>
+            <li><a class="dropdown-item" href="router.php?action=ajoutRecolte">Prendre un RDV avec un praticien</a></li>
+          </ul>
+        </li>
+
+
+        <!-------- INNOVATIONS -------->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">Innovations</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="router.php?action=propositionsFonctionnalites">Proposition d'amélioration</a></li>
+          </ul>
+        </li>
+
+        
+        <!-------- CONNEXION -------->
+        <!-- Mettre ici les fonctionnalités liées à la connexion -->
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ----- fin fragmentDoctolibMenu -->

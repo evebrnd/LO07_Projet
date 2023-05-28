@@ -4,13 +4,13 @@
  <body>
      <div class="container">
          <?php
-            include 'fragment/fragmentCaveMenu.html';
+            include $root . '/app/view/doctolibMenu.html';
             include 'fragment/fragmentCaveJumbotron.html';
             ?>
 
          <h3>Proposition d'une fonctionnalité originale</h3>
          <p>
-
+             blablabla
          </p>
 
      </div>

@@ -3,6 +3,7 @@
 require('../controller/ControllerAdmin.php');
 require('../controller/ControllerPraticien.php');
 require('../controller/ControllerPatient.php');
+require('../controller/ControllerDoctolib.php');
 
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
@@ -25,41 +26,40 @@ $args = $param;
 
 // --- Liste des méthodes autorisées
 switch ($action) {
-  case "vinReadAll":
-  case "vinReadOne":
-  case "vinReadId":
-  case "vinCreate":
-  case "vinCreated":
-  case "vinDelete":
-    //ControllerVin::$action($args);
+  case "speReadAll":
+  case "speReadOne":
+  case "speReadId":
+  case "speCreate":
+  case "speCreated":
+  case "speDelete":
+    //ControllerAdmin::$action($args);
     break;
 
-  case "producteurReadAll":
-  case "producteurReadOne":
-  case "producteurReadId":
-  case "producteurCreate":
-  case "producteurCreated":
-  case "producteurListeRegions":
-  case "producteurNombreParRegion":
-  case "producteurDelete":
-    //ControllerProducteur::$action($args);
+  case "praticienReadAll":
+  case "praticienReadOne":
+  case "praticienReadId":
+  case "praticienCreate":
+  case "praticienCreated":
+  case "praticienListeRegions":
+  case "praticienNombreParRegion":
+  case "praticienDelete":
+    //ControllerPraticien::$action($args);
     break;
 
   case "recolte":
   case "recolte2":
   case "ajoutRecolte":
   case "recolteInserted":
-    //ControllerRecolte::$action();
+    //ControllerPatient::$action();
     break;
 
-  case "mesPropositions":
-    //ControllerCave::$action();
+  case "propositionsFonctionnalites":
+    ControllerDoctolib::$action();
     break;
 
-    // Tache par défaut
   default:
-    $action = "caveAccueil";
-    //ControllerCave::$action();
+    $action = "doctolibAccueil";
+    ControllerDoctolib::$action();
 }
 ?>
 <!-- ----- Fin router2 -->
