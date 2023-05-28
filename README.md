@@ -19,7 +19,7 @@ Ce projet a été réalisé par :
 ## Fonctionnalités d'un administrateur
 - [X] Liste des spécialités
 - [X] Sélection d'une spécialité par son id
-- [ ] Insertion d'une nouvelle spécialité
+- [X] Insertion d'une nouvelle spécialité
 - [ ] Liste des praticiens avec leur spécialité
 - [ ] Nombre de praticiens par patient
 - [ ] Info : présente un ensemble de tableaux avec leurs données
