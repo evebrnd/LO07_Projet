@@ -3,11 +3,12 @@
 <?php
 require_once 'Model.php';
 
-class ModelPersonne {
+class ModelPersonne
+{
     const ADMINISTRATEUR = 0;
     const PRATICIEN = 1;
     const PATIENT = 2;
-    private $id, $nom, $prenom,$adresse, $login, $password, $statut, $specialite_id;
+    private $id, $nom, $prenom, $adresse, $login, $password, $statut, $specialite_id;
 
     public function __construct($id = NULL, $nom = NULL, $prenom = NULL, $adresse = NULL, $login = NULL, $password = NULL, $statut = NULL, $specialite_id = NULL)
     {
@@ -109,7 +110,9 @@ class ModelPersonne {
 
     // ------ Fonctions de la classe
     // permet d'avoir l'id et la spécialité
-    public static function getSpecialite() {
+    /*
+    public static function getSpecialite()
+    {
         try {
             $database = Model::getInstance();
             $query = "select id, specialite from doctolib_base";
@@ -117,30 +120,44 @@ class ModelPersonne {
             $statement->execute();
             $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelVin");
             return $results;
-        } 
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
             return NULL;
-           }
- }
-     // pour selectionner un id
-     public static function getOne($id) {
+        }
+    }
+    // pour selectionner un id
+    public static function getOne($id)
+    {
         try {
             $database = Model::getInstance();
             $query = "select * from doctolib_base where id = :id";
             $statement = $database->prepare($query);
             $statement->execute([
-              'id' => $id
+                'id' => $id
             ]);
             $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelProducteur");
             return $results;
-        } 
-        catch (PDOException $e) {
+        } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
             return NULL;
         }
     }
+    */
 
+    public static function getAllPraticien()
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select * from personne where statut=1 AND id>0";
+            $statement = $database->prepare($query);
+            $statement->execute();
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelPersonne");
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
 }
 ?>
 <!-- ----- fin ModelPersonne -->

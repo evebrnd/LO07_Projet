@@ -70,6 +70,19 @@ class ControllerAdmin
         $vue = $root . '/app/view/admin/viewInsertedSpecialite.php';
         require($vue);
     }
+
+    // --- Liste des praticiens avec leur spécialité 
+    public static function readAllPraticien()
+    {
+        $results_praticien = ModelPersonne::getAllPraticien();
+        $results_specialite = ModelSpecialite::getAll();
+        // ----- Construction chemin de la vue
+        include 'config.php';
+        $vue = $root . '/app/view/admin/viewAllPraticien.php';
+        if (DEBUG)
+            echo ("ControllerVin : vinReadAll : vue = $vue");
+        require($vue);
+    }
 }
 ?>
 <!-- ----- fin ControllerAdministrateur -->
