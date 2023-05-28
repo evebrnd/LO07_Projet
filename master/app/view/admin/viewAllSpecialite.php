@@ -32,6 +32,7 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
                 ?>
             </tbody>
         </table>
+        <br>
     </div>
     <?php include $root . '/app/view/fragment/fragmentDoctolibFooter.html'; ?>
 

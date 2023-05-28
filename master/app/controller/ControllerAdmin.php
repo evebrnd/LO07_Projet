@@ -20,7 +20,32 @@ class ControllerAdmin
         require($vue);
     }
 
-    
+    // Affiche un formulaire pour sélectionner un id qui existe
+    public static function speReadId($args)
+    {
+        $results = ModelSpecialite::getAllId();
+
+        $target = $args['target'];
+        if (DEBUG) echo ("ControllerSpecialite:speReadId: target = $target</br>");
+
+        include 'config.php';
+        $vue = $root . '/app/view/admin/viewId.php';
+        require($vue);
+    }
+
+
+
+    // Affiche une spe particulière (id)
+    public static function speReadOne()
+    {
+        $spe_id = $_GET['id'];
+        $results = ModelSpecialite::getOne($spe_id);
+
+        // ----- Construction chemin de la vue
+        include 'config.php';
+        $vue = $root . '/app/view/admin/viewAllSpecialite.php';
+        require($vue);
+    }
 }
 ?>
 <!-- ----- fin ControllerAdministrateur -->
