@@ -80,7 +80,20 @@ class ControllerAdmin
         include 'config.php';
         $vue = $root . '/app/view/admin/viewAllPraticien.php';
         if (DEBUG)
-            echo ("ControllerVin : vinReadAll : vue = $vue");
+            echo ("ControllerAdmin : readAllPraticien : vue = $vue");
+        require($vue);
+    }
+
+    public static function nombrePraticienParPatient()
+    {
+        $results_patient = ModelPersonne::getAllPatient();
+        $results_nombre = ModelRendezVous::getNombreParPatient();
+
+        // ----- Construction chemin de la vue
+        include 'config.php';
+        $vue = $root . '/app/view/admin/viewNombreParPatient.php';
+        if (DEBUG)
+            echo ("ControllerAdmin : nombrePraticienParPatient : vue = $vue");
         require($vue);
     }
 }

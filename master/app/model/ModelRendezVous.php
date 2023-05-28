@@ -4,7 +4,7 @@
 require_once 'Model.php';
 class ModelRendezVous
 {
-    private $id,$patient_id, $praticien_id,$rdv_date;
+    private $id, $patient_id, $praticien_id, $rdv_date;
 
     public function __construct($id = NULL, $patient_id = NULL, $praticien_id = NULL, $rdv_date = NULL)
     {
@@ -56,8 +56,35 @@ class ModelRendezVous
     {
         $this->rdv_date = $rdv_date;
     }
+
+
+    public static function getNombreParPatient()
+{
+    try {
+        $database = Model::getInstance();
+        $query = "SELECT patient_id, COUNT(praticien_id) AS rendezvous_count FROM rendezvous WHERE patient_id > 0 GROUP BY patient_id";
+        $statement = $database->prepare($query);
+        $statement->execute();
+        //$results = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $results = array();
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $patientId = $row['patient_id'];
+            $count = $row['rendezvous_count'];
+
+            // add to $results
+            $results[$patientId] = $count;
+        }
+
+        return $results;
+    } catch (PDOException $e) {
+        printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+        return NULL;
+    }
+}
+
 }
 ?>
+
 
 
 <!-- ----- fin ModelRendezVous -->

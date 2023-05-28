@@ -158,6 +158,21 @@ class ModelPersonne
             return NULL;
         }
     }
+
+    public static function getAllPatient()
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select * from personne where statut=2 AND id>0";
+            $statement = $database->prepare($query);
+            $statement->execute();
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelPersonne");
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
 }
 ?>
 <!-- ----- fin ModelPersonne -->
