@@ -28,8 +28,8 @@ Ce projet a été réalisé par :
 ## Fonctionnalités d'un praticien
 - [X] Liste de mes disponibilités
 - [ ] Ajout de nouvelles dispos
-- [ ] Liste de mes rdv avec le nom des patients
-- [ ] Liste de mes patients sans doublon
+- [X] Liste de mes rdv avec le nom des patients
+- [X] Liste de mes patients sans doublon
 
 
 ## Fonctionnalités d'un patient

@@ -37,14 +37,9 @@ switch ($action) {
     ControllerAdmin::$action($args);
     break;
 
-  case "praticienReadAll":
-  case "praticienReadOne":
-  case "praticienReadId":
-  case "praticienCreate":
-  case "praticienCreated":
-  case "praticienListeRegions":
-  case "praticienNombreParRegion":
-  case "viewDisponibilite":
+  case "praticienViewDisponibilite":
+  case "praticienViewPatients":
+  case "praticienViewMyRdv":
     ControllerPraticien::$action($args);
     break;
 

@@ -74,6 +74,24 @@ class ModelRendezVous
         }
     }
 
+    public static function getMyRdv($id) {
+        try {
+         $database = Model::getInstance();
+         
+         $query = "select * from rendezvous where praticien_id = :id AND patient_id>0";
+         $statement = $database->prepare($query);
+         $statement->execute([
+           'id' => $id
+         ]);
+         $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
+         
+         return $results;
+        } catch (PDOException $e) {
+         printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+         return NULL;
+        }
+       }
+
 
     public static function getNombreParPatient()
     {
@@ -87,7 +105,6 @@ class ModelRendezVous
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $patientId = $row['patient_id'];
                 $count = $row['rendezvous_count'];
-
                 // add to $results
                 $results[$patientId] = $count;
             }
