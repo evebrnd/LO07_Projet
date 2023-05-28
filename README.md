@@ -9,7 +9,7 @@ Ce projet a été réalisé par :
 
 
 ## To do
-- [ ] Mettre la structure du projet (modèle, controleur, routeur, et qq view)
+- [X] Mettre la structure du projet (modèle, controleur, routeur, et qq view)
 - [ ] Faire un v1 du menu
 - [ ] Vue Login
 - [ ] Vue s'inscrire
@@ -18,7 +18,7 @@ Ce projet a été réalisé par :
 
 ## Fonctionnalités d'un administrateur
 - [ ] Liste des spécialités
-- [ ] Sélection d'une psécialité par son id
+- [ ] Sélection d'une spécialité par son id
 - [ ] Insertion d'une nouvelle spécialité
 - [ ] Liste des praticiens avec leur spécialité
 - [ ] Nombre de praticiens par patient
