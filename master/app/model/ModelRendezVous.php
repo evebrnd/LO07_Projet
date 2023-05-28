@@ -22,7 +22,7 @@ class ModelRendezVous
         return $this->id;
     }
 
-    public function setId($id): void
+    public function setId($id)
     {
         $this->id = $id;
     }
@@ -32,7 +32,7 @@ class ModelRendezVous
         return $this->patient_id;
     }
 
-    public function setPatientId($patient_id): void
+    public function setPatientId($patient_id)
     {
         $this->patient_id = $patient_id;
     }
@@ -42,7 +42,7 @@ class ModelRendezVous
         return $this->praticien_id;
     }
 
-    public function setPraticienId($praticien_id): void
+    public function setPraticienId($praticien_id)
     {
         $this->praticien_id = $praticien_id;
     }
@@ -52,7 +52,7 @@ class ModelRendezVous
         return $this->rdv_date;
     }
 
-    public function setRdvDate($rdv_date): void
+    public function setRdvDate($rdv_date)
     {
         $this->rdv_date = $rdv_date;
     }

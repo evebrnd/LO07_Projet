@@ -1,33 +1,26 @@
 <!-- ----- debut ControllerAdministrateur -->
 <?php
 require_once '../model/ModelPersonne.php';
+require_once '../model/ModelSpecialite.php';
+require_once '../model/ModelRendezVous.php';
 
-class ControllerAdmin {
-    
-    // --- Liste des specialités
-    public static function adminReadAll() {
-        $results = ModelVin::getAll();
+class ControllerAdmin
+{
+
+
+    // --- Liste des specialite
+    public static function speReadAll()
+    {
+        $results = ModelSpecialite::getAll();
         // ----- Construction chemin de la vue
         include 'config.php';
-        $vue = $root . '/app/view/admin/view?.php';           //faut créer la vue
+        $vue = $root . '/app/view/admin/viewAllSpecialite.php';
         if (DEBUG)
-         echo ("ControllerAdmin : adminReadAll : vue = $vue");
-        require ($vue);
+            echo ("ControllerAdmin : speReadAll : vue = $vue");
+        require($vue);
     }
+
     
-     // Affiche une spécialité particuliere (id)
-    public static function adminReadOne() {
-        $personne_id = $_GET['id'];
-        $results = ModelPersonne::getOne($personne_id);
-
-        // ----- Construction chemin de la vue
-        include 'config.php';
-        $vue = $root . '/app/view/admin/view?.php';          //faut créer la vue
-        require ($vue);
-    }
-
 }
 ?>
 <!-- ----- fin ControllerAdministrateur -->
-
-

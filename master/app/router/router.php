@@ -32,7 +32,7 @@ switch ($action) {
   case "speCreate":
   case "speCreated":
   case "speDelete":
-    //ControllerAdmin::$action($args);
+    ControllerAdmin::$action($args);
     break;
 
   case "praticienReadAll":
