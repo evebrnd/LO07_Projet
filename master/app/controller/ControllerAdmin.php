@@ -96,6 +96,22 @@ class ControllerAdmin
             echo ("ControllerAdmin : nombrePraticienParPatient : vue = $vue");
         require($vue);
     }
+
+    public static function infoOnAll()
+    {
+        $results_spe = ModelSpecialite::getAll();
+        $results_admin = ModelPersonne::getAllAdmin();
+        $results_praticien = ModelPersonne::getAllPraticien();
+        $results_patient = ModelPersonne::getAllPatient();
+        $results_rdv = ModelRendezVous::getAllRdv();
+
+        // ----- Construction chemin de la vue
+        include 'config.php';
+        $vue = $root . '/app/view/admin/viewAllInfo.php';
+        if (DEBUG)
+            echo ("ControllerAdmin : infoOnAll : vue = $vue");
+        require($vue);
+    }
 }
 ?>
 <!-- ----- fin ControllerAdministrateur -->

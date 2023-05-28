@@ -22,7 +22,7 @@ Ce projet a été réalisé par :
 - [X] Insertion d'une nouvelle spécialité
 - [X] Liste des praticiens avec leur spécialité
 - [X] Nombre de praticiens par patient
-- [ ] Info : présente un ensemble de tableaux avec leurs données
+- [X] Info : présente un ensemble de tableaux avec leurs données
 
  
 ## Fonctionnalités d'un praticien
