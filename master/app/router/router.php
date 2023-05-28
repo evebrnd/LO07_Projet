@@ -44,8 +44,8 @@ switch ($action) {
   case "praticienCreated":
   case "praticienListeRegions":
   case "praticienNombreParRegion":
-  case "praticienDelete":
-    //ControllerPraticien::$action($args);
+  case "viewDisponibilite":
+    ControllerPraticien::$action($args);
     break;
 
   case "recolte":

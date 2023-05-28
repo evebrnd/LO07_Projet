@@ -79,7 +79,7 @@ class ModelRendezVous
     {
         try {
             $database = Model::getInstance();
-            $query = "SELECT patient_id, COUNT(praticien_id) AS rendezvous_count FROM rendezvous WHERE patient_id > 0 GROUP BY patient_id";
+            $query = "select patient_id, count(praticien_id) as rendezvous_count from rendezvous where patient_id > 0 group by patient_id";
             $statement = $database->prepare($query);
             $statement->execute();
             //$results = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -91,6 +91,26 @@ class ModelRendezVous
                 // add to $results
                 $results[$patientId] = $count;
             }
+
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+
+    public static function getDispo($index)
+    {
+        try {
+            $database = Model::getInstance();
+
+            $query = "select * from rendezvous where praticien_id = :index and patient_id=0";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'index' => $index
+            ]);
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
 
             return $results;
         } catch (PDOException $e) {
