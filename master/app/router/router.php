@@ -1,4 +1,4 @@
-<!-- ----- debut Router1 -->
+<!-- ----- debut router2 -->
 <?php
 require('../controller/ControllerAdmin.php');
 require('../controller/ControllerPraticien.php');
@@ -14,6 +14,15 @@ parse_str($query_string, $param);
 // --- $action contient le nom de la méthode statique recherchée
 $action = htmlspecialchars($param["action"]);
 
+// Modification du routeur pour prendre en compte l'ensemble des paramètres
+$action = $param['action'];
+
+// --- On supprime l'élément action de la structure
+unset($param['action']);
+
+// --- Tout ce qui reste sont des arguments
+$args = $param;
+
 // --- Liste des méthodes autorisées
 switch ($action) {
   case "vinReadAll":
@@ -21,7 +30,8 @@ switch ($action) {
   case "vinReadId":
   case "vinCreate":
   case "vinCreated":
-    //ControllerVin::$action();
+  case "vinDelete":
+    //ControllerVin::$action($args);
     break;
 
   case "producteurReadAll":
@@ -31,7 +41,15 @@ switch ($action) {
   case "producteurCreated":
   case "producteurListeRegions":
   case "producteurNombreParRegion":
-    //ControllerProducteur::$action();
+  case "producteurDelete":
+    //ControllerProducteur::$action($args);
+    break;
+
+  case "recolte":
+  case "recolte2":
+  case "ajoutRecolte":
+  case "recolteInserted":
+    //ControllerRecolte::$action();
     break;
 
   case "mesPropositions":
@@ -44,4 +62,4 @@ switch ($action) {
     //ControllerCave::$action();
 }
 ?>
-<!-- ----- Fin Router1 -->
+<!-- ----- Fin router2 -->
