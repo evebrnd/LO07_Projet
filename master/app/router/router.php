@@ -40,6 +40,8 @@ switch ($action) {
   case "praticienViewDisponibilite":
   case "praticienViewPatients":
   case "praticienViewMyRdv":
+  case "praticienAjoutRdv":
+  case "praticienRdvAjoute":
     ControllerPraticien::$action($args);
     break;
 

@@ -63,6 +63,28 @@ class ControllerPraticien
             echo ("ControllerPraticien : viewListOfPatients : vue = $vue");
         require($vue);
     }
+
+    public static function praticienAjoutRdv()
+    {
+        $results = ModelRendezVous::ajoutDispo("50",htmlspecialchars($_GET['rdv_date']));
+
+        include 'config.php';
+        $vue = $root . '/app/view/praticien/viewInsertDispo.php';
+        if (DEBUG)
+            echo ("ControllerPraticien : viewInsertDispo : vue = $vue");
+        require($vue);
+    }
+
+    public static function praticienRdvAjoute() {
+        // ajouter une validation des informations du formulaire
+        $results = ModelRendezVous::ajoutDispo(
+            "50",htmlspecialchars($_GET['rdv_date'])
+        );
+        // ----- Construction chemin de la vue
+        include 'config.php';
+        $vue = $root . '/app/view/praticien/viewInsertedDispo.php';
+        require ($vue);
+       }
 }
 ?>
 <!-- ----- fin ControllerPraticien -->

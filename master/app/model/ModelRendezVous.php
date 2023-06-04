@@ -135,6 +135,36 @@ class ModelRendezVous
             return NULL;
         }
     }
+
+    public static function ajoutDispo ($praticien_id, $rdv_date)
+    {
+        try {
+            $database = Model::getInstance();
+
+            $query = "SELECT MAX(id) AS last_id FROM rendezvous";
+            $statement = $database->prepare($query);
+            $statement->execute();
+            $result = $statement->fetch(PDO::FETCH_ASSOC);
+            $last_id = $result['last_id'];
+            $new_id = $last_id + 1;
+    
+
+            $query = "INSERT INTO `rendezvous` (`id`, `patient_id`, `praticien_id`, `rdv_date`) VALUES
+            (:id, 0, :praticien_id, :rdv_date)";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $new_id,
+                'praticien_id' => $praticien_id,
+                'rdv_date' => $rdv_date
+            ]);
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
+
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
 }
 ?>
 
