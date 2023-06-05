@@ -45,11 +45,11 @@ switch ($action) {
     ControllerPraticien::$action($args);
     break;
 
-  case "recolte":
+  case "patientViewMonCompte":
   case "recolte2":
   case "ajoutRecolte":
   case "recolteInserted":
-    //ControllerPatient::$action();
+    ControllerPatient::$action($args);
     break;
 
   case "propositionsFonctionnalites":
