@@ -10,11 +10,7 @@ class ControllerPatient {
         // TEST avec le tuple suivant
         //(201, "VENTURA", "Lino", "Paris", "ventura", "secret", 2, 0)
         $results = ModelPersonne::getAllForPatient(201);
-        // $patients = array();
-        // foreach ($results as $patientRdv) {
-        //     $index = $patientRdv->getPatientId();
-        //     $patients[$index] = ModelPersonne::getOneId($index);
-        // }
+        
 
         include 'config.php';
         $vue = $root . '/app/view/patient/viewMonCompte.php';
@@ -22,7 +18,20 @@ class ControllerPatient {
             echo ("ControllerPatient : viewMonCompte : vue = $vue");
         require($vue);
     }
- 
+    
+    public static function patientViewRdv()
+    {
+        // TEST avec le tuple suivant
+        //(201, "VENTURA", "Lino", "Paris", "ventura", "secret", 2, 0)
+        $results = ModelRendezVous::getRdvPatient(201);
+        
+
+        include 'config.php';
+        $vue = $root . '/app/view/patient/viewMesRdv.php';
+        if (DEBUG)
+            echo ("ControllerPatient : viewMonCompte : vue = $vue");
+        require($vue);
+    }
 }
 ?>
 <!-- ----- fin ControllerPatient -->

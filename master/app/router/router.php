@@ -46,7 +46,7 @@ switch ($action) {
     break;
 
   case "patientViewMonCompte":
-  case "recolte2":
+  case "patientViewRdv":
   case "ajoutRecolte":
   case "recolteInserted":
     ControllerPatient::$action($args);

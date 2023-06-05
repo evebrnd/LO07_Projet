@@ -165,6 +165,23 @@ class ModelRendezVous
             return NULL;
         }
     }
+
+    public static function getRdvPatient($id)
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select * from rendezvous where patient_id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id
+            ]);
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelPersonne");
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }  
+    }
 }
 ?>
 
