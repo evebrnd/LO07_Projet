@@ -175,7 +175,7 @@ class ModelRendezVous
             $statement->execute([
                 'id' => $id
             ]);
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelPersonne");
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
             return $results;
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());

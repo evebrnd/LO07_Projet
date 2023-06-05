@@ -2,6 +2,7 @@
 <?php
 
 require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
+require_once '../model/ModelRendezVous.php';
 ?>
 
 <body>
@@ -23,11 +24,9 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
             <tbody>
                 <?php
                 $personneModel = new ModelPersonne();
-                $rendezVousModel = new ModelRendezVous();
 
                 foreach ($results as $element) {
-                    //$praticienId = $element->getPraticienId();
-                    $praticienId = $rendezVousModel->getPraticienId($element->getId());
+                    $praticienId = $element->getPraticienId();
                     $praticien = $personneModel->getOneId($praticienId);
                     printf(
                         "<tr><td>%s</td><td>%s</td><td>%s</td></tr>",
