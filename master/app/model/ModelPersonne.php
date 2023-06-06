@@ -189,6 +189,23 @@ class ModelPersonne
         }  
     }
 
+    public static function getInfoConnexion($login)
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select password from personne where login = :login";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'login' => $login
+            ]);
+            $results = $statement->fetch(PDO::FETCH_ASSOC)['password'];
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }  
+    }
+
     
 }
 ?>

@@ -170,7 +170,23 @@ class ModelRendezVous
         }
     }
 
-    
+    // public static function getDispoByDate($praticien_id, $rdv_date)
+    // {
+    //     try {
+    //         $database = Model::getInstance();
+    //         $query = "SELECT * FROM votre_table WHERE praticien_id = :praticien_id AND rdv_date = :rdv_date";
+    //         $statement = $database->prepare($query);
+    //         $statement->execute([
+    //             'praticien_id' => $praticien_id, 
+    //             'rdv_date'
+    //         ]);
+    //         $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
+    //         return $results;
+    //     } catch (PDOException $e) {
+    //         printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+    //         return NULL;
+    //     }
+    // }
 
     public static function getRdvPatient($id)
     {

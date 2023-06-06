@@ -4,6 +4,7 @@ require('../controller/ControllerAdmin.php');
 require('../controller/ControllerPraticien.php');
 require('../controller/ControllerPatient.php');
 require('../controller/ControllerDoctolib.php');
+require('../controller/ControllerConnexion.php');
 
 // --- récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
@@ -55,6 +56,11 @@ switch ($action) {
 
   case "propositionsFonctionnalites":
     ControllerDoctolib::$action();
+    break;
+
+  case "connexionLogin":
+  case "connexionLogge":
+    ControllerConnexion::$action();
     break;
 
   default:

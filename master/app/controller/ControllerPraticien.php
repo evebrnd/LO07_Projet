@@ -66,8 +66,6 @@ class ControllerPraticien
 
     public static function praticienAjoutRdv()
     {
-        
-        
 
         // $results = ModelRendezVous::ajoutDispo("50",$creneau);
 
