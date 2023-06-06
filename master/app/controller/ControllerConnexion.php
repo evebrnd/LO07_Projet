@@ -20,6 +20,12 @@ class ControllerConnexion
     {
         $login=$_GET['login'];
         $mdp=$_GET['mdp'];
+
+        session_start();
+
+        $_SESSION['login'] = $login;
+        $_SESSION['mdp'] = $mdp;
+
         $results=ModelPersonne::getInfoConnexion($login);
         printf ("<input type='hidden' name='mdp' value='%s'>",$mdp);
         include 'config.php';

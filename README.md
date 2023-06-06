@@ -11,7 +11,7 @@ Ce projet a été réalisé par :
 ## To do
 - [X] Mettre la structure du projet (modèle, controleur, routeur, et qq view)
 - [ ] Faire un v1 du menu
-- [ ] Vue Login
+- [x] Vue Login
 - [ ] Vue s'inscrire
 - [ ] Déconnexion
 
