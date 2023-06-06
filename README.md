@@ -35,7 +35,7 @@ Ce projet a été réalisé par :
 ## Fonctionnalités d'un patient
 - [x] Mon compte
 - [x] Liste de mes rdv
-- [ ] Prendre un rdv avec un praticien
+- [x] Prendre un rdv avec un praticien
 
 ## Améliorations
 - [ ] Innovations éventuelles : annuler un rdv, modifier la manière d'ajouter des dispos, se désinscrire

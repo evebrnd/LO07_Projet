@@ -66,7 +66,10 @@ class ControllerPraticien
 
     public static function praticienAjoutRdv()
     {
-        $results = ModelRendezVous::ajoutDispo("50",htmlspecialchars($_GET['rdv_date']));
+        
+        
+
+        // $results = ModelRendezVous::ajoutDispo("50",$creneau);
 
         include 'config.php';
         $vue = $root . '/app/view/praticien/viewInsertDispo.php';
@@ -77,9 +80,19 @@ class ControllerPraticien
 
     public static function praticienRdvAjoute() {
         // ajouter une validation des informations du formulaire
-        $results = ModelRendezVous::ajoutDispo(
-            "50",htmlspecialchars($_GET['rdv_date'])
-        );
+        $praticien_id = 50;
+        $rdv_date=htmlspecialchars($_GET['rdv_date']);
+        $rdv_nombre=htmlspecialchars($_GET['rdv_nombre']);
+        date_default_timezone_set('Europe/Paris');
+        $heureDeBase = new DateTime($rdv_date . '10:00:00');
+        $formattedDate = $heureDeBase->format('Y-m-d H\hi');
+
+        foreach (range(1, $rdv_nombre) as $index) {
+            $creneau = $heureDeBase->format('Y-m-d H\hi');
+            $creneaux[] = $creneau;
+            $heureDeBase->add(new DateInterval('PT1H'));
+            $results = ModelRendezVous::ajoutDispo("50",$creneau);
+        }
         // ----- Construction chemin de la vue
         include 'config.php';
         $vue = $root . '/app/view/praticien/viewInsertedDispo.php';

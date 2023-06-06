@@ -136,7 +136,7 @@ class ModelRendezVous
         }
     }
 
-    public static function ajoutDispo ($praticien_id, $rdv_date)
+    public static function ajoutDispo ($praticien_id, $creneau)
     {
         try {
             $database = Model::getInstance();
@@ -149,15 +149,19 @@ class ModelRendezVous
             $new_id = $last_id + 1;
     
 
-            $query = "INSERT INTO `rendezvous` (`id`, `patient_id`, `praticien_id`, `rdv_date`) VALUES
+            $query = "INSERT INTO `rendezvous` VALUES
             (:id, 0, :praticien_id, :rdv_date)";
             $statement = $database->prepare($query);
             $statement->execute([
                 'id' => $new_id,
                 'praticien_id' => $praticien_id,
-                'rdv_date' => $rdv_date
+                'rdv_date' => $creneau
             ]);
-            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
+            // Récupérer les données insérées en effectuant une nouvelle requête SELECT
+            $query = "SELECT * FROM `rendezvous` WHERE id = :id";
+            $statement = $database->prepare($query);
+            $statement->execute(['id' => $new_id]);
+            $results = $statement->fetch(PDO::FETCH_ASSOC);
 
             return $results;
         } catch (PDOException $e) {
@@ -165,6 +169,8 @@ class ModelRendezVous
             return NULL;
         }
     }
+
+    
 
     public static function getRdvPatient($id)
     {
