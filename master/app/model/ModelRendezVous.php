@@ -11,9 +11,9 @@ class ModelRendezVous
         // Valeurs nulles si aucun passage de paramètres
         if (!is_null($id)) {
             $this->id = $id;
-            $this->$patient_id = $patient_id;
-            $this->$praticien_id = $praticien_id;
-            $this->$rdv_date = $rdv_date;
+            $this->patient_id = $patient_id;
+            $this->praticien_id = $praticien_id;
+            $this->rdv_date = $rdv_date;
         }
     }
 
@@ -182,7 +182,56 @@ class ModelRendezVous
             return NULL;
         }  
     }
-}
+
+    public static function getChoixPraticien()
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select distinct praticien_id from rendezvous";
+            $statement = $database->prepare($query);
+            $statement->execute();
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+    public static function updateRdv($patient_id, $rdv_date, $praticien_id)
+    {
+        try {
+            $database = Model::getInstance();
+            // Vérification des paramètres
+            if (!is_numeric($patient_id) || !is_numeric($praticien_id)) {
+                throw new Exception("Les identifiants patient et praticien doivent être des nombres.");
+            }
+            $query = "UPDATE rendezvous SET patient_id = :patient_id WHERE rdv_date= :rdv_date and praticien_id = :praticien_id";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'patient_id'=> $patient_id,
+                'rdv_date' => $rdv_date,
+                'praticien_id'=> $praticien_id
+            ]);
+
+            // Effectuer une requête SELECT pour récupérer les données mises à jour
+            $query = "SELECT * FROM rendezvous WHERE rdv_date = :rdv_date AND praticien_id = :praticien_id";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'rdv_date' => $rdv_date,
+                'praticien_id' => $praticien_id
+            ]);
+
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+        
+    }
+
 ?>
 
 

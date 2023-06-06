@@ -33,8 +33,8 @@ Ce projet a été réalisé par :
 
 
 ## Fonctionnalités d'un patient
-- [ ] Mon compte
-- [ ] Liste de mes rdv
+- [x] Mon compte
+- [x] Liste de mes rdv
 - [ ] Prendre un rdv avec un praticien
 
 ## Améliorations
