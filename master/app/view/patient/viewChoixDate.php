@@ -17,8 +17,8 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
         <input type="hidden" name='action' value='patientUpdateRdv'>
             <div class="form-group">
                 
-                <label for="date">dates : </label> 
-                <select class="form-control" id='rdv_date' name='rdv_date' style="width: 100px">
+                <label for="date">Disponibilités: </label> 
+                <select class="form-control" id='rdv_date' name='rdv_date' style="width: 250px">
                     <?php
                         $dispos = ModelRendezVous::getDispo($praticien_id);
                         foreach ($dispos as $dispo) {
@@ -32,7 +32,7 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
                 </select>
             </div>
             <p/><br/>
-            <button class="btn btn-primary" type="submit">Go</button>
+            <button class="btn btn-primary" type="submit">Valider</button>
     </form>
         <br>
     </div>

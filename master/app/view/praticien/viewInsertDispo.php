@@ -21,7 +21,7 @@ require ($root . '/app/view/fragment/fragmentDoctolibHeader.html');
       </div>
       <p/>
        <br/> 
-      <button class="btn btn-primary" type="submit">Go</button>
+      <button class="btn btn-primary" type="submit">Valider</button>
     </form>
     <p/>
   </div>

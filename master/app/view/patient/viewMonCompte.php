@@ -10,7 +10,7 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
         include $root . '/app/view/doctolibMenu.html';
         include $root . '/app/view/fragment/fragmentDoctolibJumbotron.html';
         ?>
-        <h4>Informations sur mon compte</h4>
+        <h4>Informations de mon compte</h4>
 
         <table class="table table-striped table-bordered" style="width:350px">
             <thead>

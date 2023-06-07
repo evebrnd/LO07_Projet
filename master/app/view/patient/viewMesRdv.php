@@ -11,9 +11,9 @@ require_once '../model/ModelRendezVous.php';
         include $root . '/app/view/doctolibMenu.html';
         include $root . '/app/view/fragment/fragmentDoctolibJumbotron.html';
         ?>
-        <h4>Liste de mes rdvs</h4>
+        <h4>Liste de mes rendez-vous</h4>
 
-        <table class="table table-striped table-bordered" style="width:350px">
+        <table class="table table-striped table-bordered" style="width:300px">
             <thead>
                 <tr>
                     <th scope="col">nom</th>
