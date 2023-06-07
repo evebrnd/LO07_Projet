@@ -1,6 +1,4 @@
-<!-- ----- début viewListDispo -->
 <?php
-
 require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
 ?>
 
@@ -21,10 +19,12 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
             <tbody>
                 <?php
                 foreach ($results as $element) {
-                    printf(
-                        "<tr><td>%s</td></tr>",
-                        $element->getRdvDate()
-                    );
+                    if (!empty($element->getRdvDate())) {
+                        printf(
+                            "<tr><td>%s</td></tr>",
+                            $element->getRdvDate()
+                        );
+                    }
                 }
                 ?>
             </tbody>
@@ -32,5 +32,6 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
         <br>
     </div>
     <?php include $root . '/app/view/fragment/fragmentDoctolibFooter.html'; ?>
+</body>
 
-    <!-- ----- fin viewListDispo -->
+<!-- ----- fin viewListDispo -->
