@@ -29,7 +29,6 @@ foreach ($patients as $date => $patient) {
         $patient->getPrenom(),
         $date
     );
-    print_r($patients);
 }
 
 
