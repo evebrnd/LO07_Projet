@@ -15,7 +15,7 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
         <form role="form" method='get' action='router.php'>
             <div class="form-group">
                 <input type="hidden" name='action' value='patientReadId'>
-                <label for="id">id : </label> <select class="form-control" id='praticien_id' name='praticien_id' style="width: 250px">
+                <label for="id">id : </label> <select class="form-control" id='praticien_id' name='praticien_id' style="width: 200px">
                     <?php
                     $personneModel = new ModelPersonne();
 
@@ -32,9 +32,10 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
                     ?>
                 </select>
             </div>
-            <p/><br/>
+            <p />
+            <br>
             <button class="btn btn-primary" type="submit">Valider</button>
-    </form>
+        </form>
         <br>
     </div>
     <?php include $root . '/app/view/fragment/fragmentDoctolibFooter.html'; ?>

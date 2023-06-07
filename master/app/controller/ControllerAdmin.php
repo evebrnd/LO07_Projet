@@ -61,10 +61,15 @@ class ControllerAdmin
     // La clé est gérée par le systeme et pas par l'internaute
     public static function speCreated()
     {
-        // ajouter une validation des informations du formulaire
-        $results = ModelSpecialite::insert(
-            htmlspecialchars($_GET['label'])
-        );
+        $label = htmlspecialchars($_GET['label']);
+
+        if (!empty($label)) {
+            // ajouter une validation des informations du formulaire
+            $results = ModelSpecialite::insert($label);
+        } else {
+            $results = false;
+        }
+
         // ----- Construction chemin de la vue
         include 'config.php';
         $vue = $root . '/app/view/admin/viewInsertedSpecialite.php';
