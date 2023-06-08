@@ -1,9 +1,10 @@
 <!-- ----- debut ModelPersonne -->
-
 <?php
 require_once 'Model.php';
+
 class ModelRendezVous
 {
+    // Variables de la classe
     private $id, $patient_id, $praticien_id, $rdv_date;
 
     public function __construct($id = NULL, $patient_id = NULL, $praticien_id = NULL, $rdv_date = NULL)
@@ -59,6 +60,8 @@ class ModelRendezVous
 
 
 
+    // ------ Fonctions du modèle
+    // ---- Récupère la liste des rendez-vous
     public static function getAllRdv()
     {
         try {
@@ -74,18 +77,17 @@ class ModelRendezVous
         }
     }
 
+    // ---- Récupère les tuples rendezvous qui correspondent à l'id praticien donné
     public static function getMyRdv($id)
     {
         try {
             $database = Model::getInstance();
-
             $query = "select * from rendezvous where praticien_id = :id AND patient_id>0";
             $statement = $database->prepare($query);
             $statement->execute([
                 'id' => $id
             ]);
             $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
-
             return $results;
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
@@ -93,18 +95,17 @@ class ModelRendezVous
         }
     }
 
+    // ---- Récupère les tuples rendezvous qui correspondent à l'id patient donné
     public static function getMyRdvPatient($id)
     {
         try {
             $database = Model::getInstance();
-
             $query = "select * from rendezvous where patient_id = :id ";
             $statement = $database->prepare($query);
             $statement->execute([
                 'id' => $id
             ]);
             $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
-
             return $results;
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
@@ -112,7 +113,7 @@ class ModelRendezVous
         }
     }
 
-
+    // ---- Récupère le nombre de praticiens par patient
     public static function getNombreParPatient()
     {
         try {
@@ -120,15 +121,12 @@ class ModelRendezVous
             $query = "select patient_id, count(praticien_id) as rendezvous_count from rendezvous where patient_id > 0 group by patient_id";
             $statement = $database->prepare($query);
             $statement->execute();
-            //$results = $statement->fetchAll(PDO::FETCH_ASSOC);
             $results = array();
             while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
                 $patientId = $row['patient_id'];
                 $count = $row['rendezvous_count'];
-                // add to $results
                 $results[$patientId] = $count;
             }
-
             return $results;
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
@@ -136,19 +134,17 @@ class ModelRendezVous
         }
     }
 
-
+    // ---- Récupère les disponibilités d'un praticien donné
     public static function getDispo($index)
     {
         try {
             $database = Model::getInstance();
-
             $query = "select * from rendezvous where praticien_id = :index and patient_id=0";
             $statement = $database->prepare($query);
             $statement->execute([
                 'index' => $index
             ]);
             $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
-
             return $results;
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
@@ -156,6 +152,7 @@ class ModelRendezVous
         }
     }
 
+    // ---- Insère le/les tuple/s rendezvous d'un praticien (=ajout des disponibilités)
     public static function ajoutDispo($praticien_id, $creneau)
     {
         try {
@@ -177,7 +174,7 @@ class ModelRendezVous
                 'praticien_id' => $praticien_id,
                 'rdv_date' => $creneau
             ]);
-            // Récupérer les données insérées en effectuant une nouvelle requête SELECT
+
             $query = "SELECT * FROM `rendezvous` WHERE id = :id";
             $statement = $database->prepare($query);
             $statement->execute(['id' => $new_id]);
@@ -190,24 +187,7 @@ class ModelRendezVous
         }
     }
 
-    // public static function getDispoByDate($praticien_id, $rdv_date)
-    // {
-    //     try {
-    //         $database = Model::getInstance();
-    //         $query = "SELECT * FROM votre_table WHERE praticien_id = :praticien_id AND rdv_date = :rdv_date";
-    //         $statement = $database->prepare($query);
-    //         $statement->execute([
-    //             'praticien_id' => $praticien_id, 
-    //             'rdv_date'
-    //         ]);
-    //         $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
-    //         return $results;
-    //     } catch (PDOException $e) {
-    //         printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-    //         return NULL;
-    //     }
-    // }
-
+    // ---- Récupère les tuples rendezvous d'un patient donné 
     public static function getRdvPatient($id)
     {
         try {
@@ -225,6 +205,7 @@ class ModelRendezVous
         }
     }
 
+    // Récupère les identifiants (sans doublon) des praticiens qui ont des rendez-vous
     public static function getChoixPraticien()
     {
         try {
@@ -240,6 +221,7 @@ class ModelRendezVous
         }
     }
 
+    // Modifie un tuple rendezvous selon l'id patient, l'id praticien, la date du rendez-vous
     public static function updateRdv($patient_id, $rdv_date, $praticien_id)
     {
         try {
@@ -256,7 +238,6 @@ class ModelRendezVous
                 'praticien_id' => $praticien_id
             ]);
 
-            // Effectuer une requête SELECT pour récupérer les données mises à jour
             $query = "SELECT * FROM rendezvous WHERE rdv_date = :rdv_date AND praticien_id = :praticien_id";
             $statement = $database->prepare($query);
             $statement->execute([
@@ -272,9 +253,5 @@ class ModelRendezVous
         }
     }
 }
-
 ?>
-
-
-
 <!-- ----- fin ModelRendezVous -->

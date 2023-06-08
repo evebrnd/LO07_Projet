@@ -1,10 +1,10 @@
 <!-- ----- debut ModelPersonne -->
-
 <?php
 require_once 'Model.php';
 
 class ModelPersonne
 {
+    // Variables de la classe
     const ADMINISTRATEUR = 0;
     const PRATICIEN = 1;
     const PATIENT = 2;
@@ -109,7 +109,7 @@ class ModelPersonne
 
 
     // ------ Fonctions de la classe
-
+    // ---- Récupère la liste des administrateurs
     public static function getAllAdmin()
     {
         try {
@@ -125,6 +125,7 @@ class ModelPersonne
         }
     }
 
+    // ---- Récupère la liste des praticiens
     public static function getAllPraticien()
     {
         try {
@@ -140,6 +141,7 @@ class ModelPersonne
         }
     }
 
+    // ---- Récupère la liste des patients
     public static function getAllPatient()
     {
         try {
@@ -155,6 +157,7 @@ class ModelPersonne
         }
     }
 
+    // ---- Récupère le tuple personne qui correspond à l'id donné
     public static function getOneId($id)
     {
         try {
@@ -172,6 +175,7 @@ class ModelPersonne
         }
     }
 
+    // ---- Récupère le tuple personne qui correspond au login donné
     public static function getOneLogin($login)
     {
         try {
@@ -189,6 +193,7 @@ class ModelPersonne
         }
     }
 
+    // ---- Récupère le tuple patient qui correspond à l'id donné
     public static function getAllForPatient($id)
     {
         try {
@@ -206,23 +211,7 @@ class ModelPersonne
         }
     }
 
-    public static function getInfoConnexion($login)
-    {
-        try {
-            $database = Model::getInstance();
-            $query = "select password from personne where login = :login";
-            $statement = $database->prepare($query);
-            $statement->execute([
-                'login' => $login
-            ]);
-            $results = $statement->fetch(PDO::FETCH_ASSOC)['password'];
-            return $results;
-        } catch (PDOException $e) {
-            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-            return NULL;
-        }
-    }
-
+    // ---- Vérifie que les identifiants donnés existent dans la base de donnés
     public static function checkIdentifiers($login, $password)
     {
         try {
@@ -230,7 +219,8 @@ class ModelPersonne
             $query = "select * from personne where login = :login AND password= :password";
             $statement = $database->prepare($query);
             $statement->execute([
-                'login' => $login, 'password' => $password
+                'login' => $login, 
+                'password' => $password
             ]);
             $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelPersonne");
             return $results[0];

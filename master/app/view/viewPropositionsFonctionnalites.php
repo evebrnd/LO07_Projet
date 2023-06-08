@@ -8,7 +8,7 @@
             include $root . '/app/view/fragment/fragmentDoctolibJumbotron.html';
             ?>
 
-        <h3>Proposition d'une fonctionnalité originale</h3>
+         <h3>Proposition d'une fonctionnalité originale</h3>
          <p>
              blablabla
          </p>
@@ -19,8 +19,7 @@
         include 'fragment/fragmentCaveFooter.html';
         ?>
 
-     <!-- ----- fin de la page Mes Propositions -->
-
  </body>
 
  </html>
+ <!-- ----- fin de la page Mes Propositions -->

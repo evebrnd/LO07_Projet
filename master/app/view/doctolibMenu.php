@@ -3,26 +3,30 @@
 <nav class="navbar navbar-expand-lg bg-primary fixed-top">
   <div class="container-fluid">
 
-    <!-- ----- Barre de navigation ----- -->
+    <!-- Barre de navigation -->
     <?php
     if ($_SESSION['login'] === 'NULL') {
-      echo ("<a class=\"navbar-brand\" href=\"router.php?action=DoctolibAccueil\">BERNHARD-ROOM|||</a>");
+      echo ("<a class=\"navbar-brand\" href=\"router.php?action=DoctolibAccueil\">BERNHARD-ROOM||</a>");
     } else {
+      $userType = '';
+      $userName = $tempUser->getPrenom() . " " . $tempUser->getNom();
 
       // Affichage différencié selon le type d'utilisateur
       switch ($tempUser->getStatut()) {
         case ModelPersonne::ADMINISTRATEUR:
-          echo ("<a class=\"navbar-brand\" href=\"router.php?action=DoctolibAccueil\">BERNHARD-ROOM|administrateur|" . $tempUser->getPrenom() . " " . $tempUser->getNom() . "|</a>");
+          $userType = "administrateur";
           break;
         case ModelPersonne::PRATICIEN:
-          echo ("<a class=\"navbar-brand\" href=\"router.php?action=DoctolibAccueil\">BERNHARD-ROOM|praticien|" . $tempUser->getPrenom() . " " . $tempUser->getNom() . "|</a>");
+          $userType = "praticien";
           break;
         case ModelPersonne::PATIENT:
-          echo ("<a class=\"navbar-brand\" href=\"router.php?action=DoctolibAccueil\">BERNHARD-ROOM|patient|" . $tempUser->getPrenom() . " " . $tempUser->getNom() . "|</a>");
+          $userType = "patient";
           break;
         default:
-          echo ("<a class=\"navbar-brand\" href=\"router.php?action=DoctolibAccueil\">BERNHARD-ROOM|||</a>");
+          break;
       }
+
+      echo ("<a class=\"navbar-brand\" href=\"router.php?action=DoctolibAccueil\">BERNHARD-ROOM | $userType | $userName</a>");
     }
     ?>
 
@@ -64,7 +68,7 @@
             $menuContent .= '<li><a class="dropdown-item" href="router.php?action=praticienAjoutRdv">Ajout de nouvelles disponibilités</a></li>';
             $menuContent .= '<li role="separator" class="dropdown-divider"></li>';
             $menuContent .= '<li><a class="dropdown-item" href="router.php?action=praticienViewMyRdv">Liste des rendez-vous avec le nom des patients</a></li>';
-            $menuContent .= '<li><a class="dropdown-item" href="router.php?action=praticienViewPatients">Nombre de mes patients (sans doublon)</a></li>';
+            $menuContent .= '<li><a class="dropdown-item" href="router.php?action=praticienViewPatients">Liste de mes patients (sans doublon)</a></li>';
             $menuContent .= '</ul>';
             $menuContent .= '</li>';
 

@@ -1,6 +1,5 @@
 <!-- ----- début viewChoixDate -->
 <?php
-
 require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
 ?>
 
@@ -23,7 +22,7 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
                     $dispos = ModelRendezVous::getDispo($praticien_id);
                     foreach ($dispos as $dispo) {
                         $rdv_date = $dispo->getRdvDate();
-                        if ($rdv_date != '') { // Add this condition to exclude empty dates
+                        if ($rdv_date != '') {
                             printf(
                                 "<option value='%s'>%s</option>",
                                 $rdv_date,

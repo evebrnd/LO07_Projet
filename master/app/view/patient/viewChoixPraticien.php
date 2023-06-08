@@ -1,6 +1,5 @@
 <!-- ----- début viewChoixPraticien -->
 <?php
-
 require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
 ?>
 

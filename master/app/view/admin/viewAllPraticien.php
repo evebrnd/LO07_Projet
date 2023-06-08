@@ -1,4 +1,4 @@
-<!-- ----- début viewAllSpe -->
+<!-- ----- début viewAllPraticien -->
 <?php
 
 require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
@@ -41,4 +41,4 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
     </div>
     <?php include $root . '/app/view/fragment/fragmentDoctolibFooter.html'; ?>
 
-    <!-- ----- fin viewAllSpe -->
+    <!-- ----- fin viewAllPraticien -->

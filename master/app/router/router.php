@@ -1,4 +1,4 @@
-<!-- ----- debut router2 -->
+<!-- ----- debut router -->
 <?php
 require('../controller/ControllerAdmin.php');
 require('../controller/ControllerPraticien.php');
@@ -6,23 +6,15 @@ require('../controller/ControllerPatient.php');
 require('../controller/ControllerDoctolib.php');
 require('../controller/ControllerConnexion.php');
 
-// --- récupération de l'action passée dans l'URL
+// --- Récupération de l'action passée dans l'URL
 $query_string = $_SERVER['QUERY_STRING'];
 
-// fonction parse_str permet de construire 
-// une table de hachage (clé + valeur)
+// Construire d'une table de hachage (clé + valeur)
 parse_str($query_string, $param);
 
-// --- $action contient le nom de la méthode statique recherchée
 $action = htmlspecialchars($param["action"]);
-
-// Modification du routeur pour prendre en compte l'ensemble des paramètres
 $action = $param['action'];
-
-// --- On supprime l'élément action de la structure
 unset($param['action']);
-
-// --- Tout ce qui reste sont des arguments
 $args = $param;
 
 // --- Liste des méthodes autorisées
@@ -67,4 +59,4 @@ switch ($action) {
     ControllerDoctolib::$action();
 }
 ?>
-<!-- ----- Fin router2 -->
+<!-- ----- Fin router -->

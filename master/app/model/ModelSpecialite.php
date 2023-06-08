@@ -1,9 +1,10 @@
 <!-- ----- debut ModelPersonne -->
-
 <?php
 require_once 'Model.php';
+
 class ModelSpecialite
 {
+    // Variables de la classe
     private $id, $label;
 
     public function __construct($id = NULL, $label = NULL)
@@ -37,7 +38,9 @@ class ModelSpecialite
     }
 
 
+
     // ------ Fonctions du modèle
+    // ---- Récupère la liste des spécialités
     public static function getAll()
     {
         try {
@@ -53,7 +56,7 @@ class ModelSpecialite
         }
     }
 
-
+    // ---- Récupère les id des spécialités
     public static function getAllId()
     {
         try {
@@ -69,7 +72,7 @@ class ModelSpecialite
         }
     }
 
-
+    // ---- Récupère le/les tuple/s specialite qui correspondent à l'id donné
     public static function getOne($id)
     {
         try {
@@ -87,32 +90,33 @@ class ModelSpecialite
         }
     }
 
-    public static function insert($label) {
+    // ---- Insère un tuple specialite à la fin de la base de données
+    public static function insert($label)
+    {
         try {
-         $database = Model::getInstance();
-      
-         // recherche de la valeur de la clé = max(id) + 1
-         $query = "select max(id) from specialite";
-         $statement = $database->query($query);
-         $tuple = $statement->fetch();
-         $id = $tuple['0'];
-         $id++;
-      
-         // ajout d'un nouveau tuple;
-         $query = "insert into specialite value (:id, :label)";
-         $statement = $database->prepare($query);
-         $statement->execute([
-           'id' => $id,
-           'label' => $label
-         ]);
-         return $id;
+            $database = Model::getInstance();
+
+            // Recherche de la valeur de la clé = max(id) + 1
+            $query = "select max(id) from specialite";
+            $statement = $database->query($query);
+            $tuple = $statement->fetch();
+            $id = $tuple['0'];
+            $id++;
+
+            // Ajout d'un nouveau tuple
+            $query = "insert into specialite value (:id, :label)";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id,
+                'label' => $label
+            ]);
+            return $id;
         } catch (PDOException $e) {
-         printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-         return -1;
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
         }
-       }
+    }
 }
 ?>
-
 
 <!-- ----- fin ModelRendezVous -->

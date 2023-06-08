@@ -23,7 +23,7 @@ if (LOCAL) {
     $password = 'root';
 }
 
-// chemin absolu vers le répertoire du projet SUR DEV-ISI 
+// Chemin absolu vers le répertoire du projet SUR DEV-ISI 
 $root = dirname(dirname(__DIR__)) . "/";
 
 
