@@ -10,10 +10,10 @@ Ce projet a été réalisé par :
 
 ## To do
 - [X] Mettre la structure du projet (modèle, controleur, routeur, et qq view)
-- [ ] Faire un v1 du menu
+- [X] Faire le menu différencié selon le statut
 - [x] Vue Login
 - [ ] Vue s'inscrire
-- [ ] Déconnexion
+- [X] Déconnexion
 
 
 ## Fonctionnalités d'un administrateur
@@ -27,7 +27,7 @@ Ce projet a été réalisé par :
  
 ## Fonctionnalités d'un praticien
 - [X] Liste de mes disponibilités
-- [ ] Ajout de nouvelles dispos
+- [X] Ajout de nouvelles dispos - Attention pas encore de vérif de conflits des dispos entrées
 - [X] Liste de mes rdv avec le nom des patients
 - [X] Liste de mes patients sans doublon
 
