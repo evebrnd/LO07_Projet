@@ -172,6 +172,23 @@ class ModelPersonne
         }
     }
 
+    public static function getOneLogin($login)
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select * from personne where login = :login";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'login' => $login
+            ]);
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelPersonne");
+            return $results[0];
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
     public static function getAllForPatient($id)
     {
         try {
@@ -186,7 +203,7 @@ class ModelPersonne
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
             return NULL;
-        }  
+        }
     }
 
     public static function getInfoConnexion($login)
@@ -203,10 +220,25 @@ class ModelPersonne
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
             return NULL;
-        }  
+        }
     }
 
-    
+    public static function checkIdentifiers($login, $password)
+    {
+        try {
+            $database = Model::getInstance();
+            $query = "select * from personne where login = :login AND password= :password";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'login' => $login, 'password' => $password
+            ]);
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelPersonne");
+            return $results[0];
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
 }
 ?>
 <!-- ----- fin ModelPersonne -->

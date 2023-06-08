@@ -9,12 +9,11 @@ class ControllerPraticien
 
     public static function praticienViewDisponibilite()
     {
-        // Quand la connexion sera opérationnelle, il faut imaginer une variable temp avec les carac de l'utilisateur loggé 
-        // A la place de ce qu'il y a actuellement on ferait un temp->getId()
+        session_start();
+        $login=$_SESSION['login'];
+        $tempUser = ModelPersonne::getOneLogin($login);
 
-        // TEST avec le tuple suivant
-        //50, "PASTEUR", "Louis", "Paris", "pasteur", "secret", 1, 1
-        $results = ModelRendezVous::getDispo(50);
+        $results = ModelRendezVous::getDispo($tempUser->getId());
 
         include 'config.php';
         $vue = $root . '/app/view/praticien/viewListDisponibilite.php';
@@ -25,12 +24,11 @@ class ControllerPraticien
 
     public static function praticienViewMyRdv()
     {
-        // Quand la connexion sera opérationnelle, il faut imaginer une variable temp avec les carac de l'utilisateur loggé 
-        // A la place de ce qu'il y a actuellement on ferait un temp->getId()
-    
-        // TEST avec le tuple suivant
-        //50, "PASTEUR", "Louis", "Paris", "pasteur", "secret", 1, 1
-        $results = ModelRendezVous::getMyRdv(50);
+        session_start();
+        $login=$_SESSION['login'];
+        $tempUser = ModelPersonne::getOneLogin($login);
+
+        $results = ModelRendezVous::getMyRdv($tempUser->getId());
         $patients = array();
         foreach ($results as $patientRdv) {
             $rdv_date = $patientRdv->getRdvDate();
@@ -48,9 +46,11 @@ class ControllerPraticien
 
     public static function praticienViewPatients()
     {
-        // TEST avec le tuple suivant
-        //50, "PASTEUR", "Louis", "Paris", "pasteur", "secret", 1, 1
-        $results = ModelRendezVous::getMyRdv(50);
+        session_start();
+        $login=$_SESSION['login'];
+        $tempUser = ModelPersonne::getOneLogin($login);
+
+        $results = ModelRendezVous::getMyRdv($tempUser->getId());
         $patients = array();
         foreach ($results as $patientRdv) {
             $index = $patientRdv->getPatientId();
@@ -66,6 +66,9 @@ class ControllerPraticien
 
     public static function praticienAjoutRdv()
     {
+        session_start();
+        $login=$_SESSION['login'];
+        $tempUser = ModelPersonne::getOneLogin($login);
 
         // $results = ModelRendezVous::ajoutDispo("50",$creneau);
 
@@ -77,8 +80,12 @@ class ControllerPraticien
     }
 
     public static function praticienRdvAjoute() {
+        session_start();
+        $login=$_SESSION['login'];
+        $tempUser = ModelPersonne::getOneLogin($login);
+
         // ajouter une validation des informations du formulaire
-        $praticien_id = 50;
+        $praticien_id = $tempUser->getId();
         $rdv_date=htmlspecialchars($_GET['rdv_date']);
         $rdv_nombre=htmlspecialchars($_GET['rdv_nombre']);
         date_default_timezone_set('Europe/Paris');
@@ -89,7 +96,7 @@ class ControllerPraticien
             $creneau = $heureDeBase->format('Y-m-d H\hi');
             $creneaux[] = $creneau;
             $heureDeBase->add(new DateInterval('PT1H'));
-            $results = ModelRendezVous::ajoutDispo("50",$creneau);
+            $results = ModelRendezVous::ajoutDispo($praticien_id,$creneau);
         }
         // ----- Construction chemin de la vue
         include 'config.php';

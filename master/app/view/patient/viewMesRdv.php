@@ -1,19 +1,18 @@
-<!-- ----- début viewMonCompte -->
+<!-- ----- début viewRdvWithPatient -->
 <?php
 
 require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
-require_once '../model/ModelRendezVous.php';
 ?>
 
 <body>
     <div class="container">
         <?php
-        include $root . '/app/view/doctolibMenu.html';
+        include $root . '/app/view/doctolibMenu.php';
         include $root . '/app/view/fragment/fragmentDoctolibJumbotron.html';
         ?>
-        <h4>Liste de mes rendez-vous</h4>
+        <h4>Liste de mes RDV</h4>
 
-        <table class="table table-striped table-bordered" style="width:300px">
+        <table class="table table-striped table-bordered" style="width:350px">
             <thead>
                 <tr>
                     <th scope="col">nom</th>
@@ -23,16 +22,12 @@ require_once '../model/ModelRendezVous.php';
             </thead>
             <tbody>
                 <?php
-                $personneModel = new ModelPersonne();
-
-                foreach ($results as $element) {
-                    $praticienId = $element->getPraticienId();
-                    $praticien = $personneModel->getOneId($praticienId);
+                foreach ($patients as $date => $patient) {
                     printf(
                         "<tr><td>%s</td><td>%s</td><td>%s</td></tr>",
-                        $praticien->getNom(),
-                        $praticien->getPrenom(),
-                        $element->getRdvDate()
+                        $patient->getNom(),
+                        $patient->getPrenom(),
+                        $date
                     );
                 }
                 ?>
@@ -42,4 +37,4 @@ require_once '../model/ModelRendezVous.php';
     </div>
     <?php include $root . '/app/view/fragment/fragmentDoctolibFooter.html'; ?>
 
-    <!-- ----- fin viewMonCompte -->
+    <!-- ----- fin viewRdvWithPatient -->

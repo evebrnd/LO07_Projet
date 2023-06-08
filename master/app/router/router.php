@@ -55,12 +55,11 @@ switch ($action) {
     break;
 
   case "propositionsFonctionnalites":
-    ControllerDoctolib::$action();
-    break;
-
   case "connexionLogin":
   case "connexionLogge":
-    ControllerConnexion::$action();
+  case "deconnexion":
+  case "connexionError":
+    ControllerDoctolib::$action();
     break;
 
   default:

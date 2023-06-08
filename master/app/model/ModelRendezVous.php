@@ -74,23 +74,43 @@ class ModelRendezVous
         }
     }
 
-    public static function getMyRdv($id) {
+    public static function getMyRdv($id)
+    {
         try {
-         $database = Model::getInstance();
-         
-         $query = "select * from rendezvous where praticien_id = :id AND patient_id>0";
-         $statement = $database->prepare($query);
-         $statement->execute([
-           'id' => $id
-         ]);
-         $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
-         
-         return $results;
+            $database = Model::getInstance();
+
+            $query = "select * from rendezvous where praticien_id = :id AND patient_id>0";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id
+            ]);
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
+
+            return $results;
         } catch (PDOException $e) {
-         printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
-         return NULL;
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
         }
-       }
+    }
+
+    public static function getMyRdvPatient($id)
+    {
+        try {
+            $database = Model::getInstance();
+
+            $query = "select * from rendezvous where patient_id = :id ";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'id' => $id
+            ]);
+            $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
+
+            return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
 
 
     public static function getNombreParPatient()
@@ -136,7 +156,7 @@ class ModelRendezVous
         }
     }
 
-    public static function ajoutDispo ($praticien_id, $creneau)
+    public static function ajoutDispo($praticien_id, $creneau)
     {
         try {
             $database = Model::getInstance();
@@ -147,7 +167,7 @@ class ModelRendezVous
             $result = $statement->fetch(PDO::FETCH_ASSOC);
             $last_id = $result['last_id'];
             $new_id = $last_id + 1;
-    
+
 
             $query = "INSERT INTO `rendezvous` VALUES
             (:id, 0, :praticien_id, :rdv_date)";
@@ -202,7 +222,7 @@ class ModelRendezVous
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
             return NULL;
-        }  
+        }
     }
 
     public static function getChoixPraticien()
@@ -231,9 +251,9 @@ class ModelRendezVous
             $query = "UPDATE rendezvous SET patient_id = :patient_id WHERE rdv_date= :rdv_date and praticien_id = :praticien_id";
             $statement = $database->prepare($query);
             $statement->execute([
-                'patient_id'=> $patient_id,
+                'patient_id' => $patient_id,
                 'rdv_date' => $rdv_date,
-                'praticien_id'=> $praticien_id
+                'praticien_id' => $praticien_id
             ]);
 
             // Effectuer une requête SELECT pour récupérer les données mises à jour
@@ -251,8 +271,7 @@ class ModelRendezVous
             return NULL;
         }
     }
-        
-    }
+}
 
 ?>
 

@@ -4,27 +4,39 @@ require_once '../model/ModelPersonne.php';
 require_once '../model/ModelSpecialite.php';
 require_once '../model/ModelRendezVous.php';
 
-class ControllerPatient {
+class ControllerPatient
+{
     public static function patientViewMonCompte()
     {
-        // TEST avec le tuple suivant
-        //(201, "VENTURA", "Lino", "Paris", "ventura", "secret", 2, 0)
-        $results = ModelPersonne::getAllForPatient(201);
-        
+        session_start();
+        $login = $_SESSION['login'];
+        $tempUser = ModelPersonne::getOneLogin($login);
 
+        $results = ModelPersonne::getAllForPatient($tempUser->getId());
+
+        // ----- Construction chemin de la vue
         include 'config.php';
         $vue = $root . '/app/view/patient/viewMonCompte.php';
         if (DEBUG)
             echo ("ControllerPatient : viewMonCompte : vue = $vue");
         require($vue);
     }
-    
+
     public static function patientViewRdv()
     {
-        // TEST avec le tuple suivant
-        //(201, "VENTURA", "Lino", "Paris", "ventura", "secret", 2, 0)
-        $results = ModelRendezVous::getChoixPraticien();
+        session_start();
+        $login = $_SESSION['login'];
+        $tempUser = ModelPersonne::getOneLogin($login);
 
+        $results = ModelRendezVous::getMyRdvPatient($tempUser->getId());
+        $patients = array();
+        foreach ($results as $patientRdv) {
+            $index = $patientRdv->getPraticienId();
+            $rdv_date = $patientRdv->getRdvDate();
+            $patients[$rdv_date] = ModelPersonne::getOneId($index);
+        }
+
+        // ----- Construction chemin de la vue
         include 'config.php';
         $vue = $root . '/app/view/patient/viewMesRdv.php';
         if (DEBUG)
@@ -34,8 +46,13 @@ class ControllerPatient {
 
     public static function patientChoixPraticien()
     {
+        session_start();
+        $login = $_SESSION['login'];
+        $tempUser = ModelPersonne::getOneLogin($login);
+
         $results = ModelRendezVous::getChoixPraticien();
 
+        // ----- Construction chemin de la vue
         include 'config.php';
         $vue = $root . '/app/view/patient/viewChoixPraticien.php';
         if (DEBUG)
@@ -43,33 +60,38 @@ class ControllerPatient {
         require($vue);
     }
 
-    public static function patientReadId() {
+    public static function patientReadId()
+    {
+        session_start();
+        $login = $_SESSION['login'];
+        $tempUser = ModelPersonne::getOneLogin($login);
+
         $praticien_id = $_GET['praticien_id'];
         // var_dump($_GET['praticien_id']);
         $results = ModelRendezVous::getDispo($praticien_id);
-        echo"<input type='hidden' name='praticien_id' value='$praticien_id'>";
+        echo "<input type='hidden' name='praticien_id' value='$praticien_id'>";
 
-      
         // ----- Construction chemin de la vue
         include 'config.php';
         $vue = $root . '/app/view/patient/viewChoixDate.php';
-        include ($vue);
-       }
-    
+        include($vue);
+    }
+
     public static function patientUpdateRdv()
     {
-        // TEST avec le tuple suivant
-        //(201, "VENTURA", "Lino", "Paris", "ventura", "secret", 2, 0)
+        session_start();
+        $login = $_SESSION['login'];
+        $tempUser = ModelPersonne::getOneLogin($login);
+
         $rdv_date = $_GET['rdv_date'];
         $praticien_id = intval($_GET['praticien_id']);
-        $results = ModelRendezVous::updateRdv(201, $rdv_date, $praticien_id);
+        $results = ModelRendezVous::updateRdv($tempUser->getId(), $rdv_date, $praticien_id);
+
         // ----- Construction chemin de la vue
         include 'config.php';
         $vue = $root . '/app/view/patient/viewRdvPris.php';
-        include ($vue);
+        include($vue);
     }
 }
 ?>
 <!-- ----- fin ControllerPatient -->
-
-

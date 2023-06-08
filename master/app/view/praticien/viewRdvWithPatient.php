@@ -7,7 +7,7 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
 <body>
     <div class="container">
         <?php
-        include $root . '/app/view/doctolibMenu.html';
+        include $root . '/app/view/doctolibMenu.php';
         include $root . '/app/view/fragment/fragmentDoctolibJumbotron.html';
         ?>
         <h4>Liste de mes RDV</h4>
@@ -22,16 +22,14 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
             </thead>
             <tbody>
                 <?php
-foreach ($patients as $date => $patient) {
-    printf(
-        "<tr><td>%s</td><td>%s</td><td>%s</td></tr>",
-        $patient->getNom(),
-        $patient->getPrenom(),
-        $date
-    );
-}
-
-
+                foreach ($patients as $date => $patient) {
+                    printf(
+                        "<tr><td>%s</td><td>%s</td><td>%s</td></tr>",
+                        $patient->getNom(),
+                        $patient->getPrenom(),
+                        $date
+                    );
+                }
                 ?>
             </tbody>
         </table>
