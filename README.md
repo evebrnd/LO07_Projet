@@ -11,8 +11,8 @@ Ce projet a été réalisé par :
 ## To do
 - [X] Mettre la structure du projet (modèle, controleur, routeur, et qq view)
 - [X] Faire le menu différencié selon le statut
-- [x] Vue Login
-- [ ] Vue s'inscrire
+- [x] Fonctions de Login
+- [X] Fonction d'inscription
 - [X] Déconnexion
 
 
