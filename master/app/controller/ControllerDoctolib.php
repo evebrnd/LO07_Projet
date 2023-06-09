@@ -39,7 +39,7 @@ class ControllerDoctolib
 
       // Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/viewPropositionsFonctionnalites.php';
+      $vue = $root . '/app/view/ameliorations/viewPropositionsFonctionnalites.php';
       if (DEBUG)
          echo ("ControllerDoctolib : propositionsFonctionnalites : vue = $vue");
       require($vue);
