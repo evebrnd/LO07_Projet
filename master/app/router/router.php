@@ -51,6 +51,9 @@ switch ($action) {
   case "connexionLogge":
   case "deconnexion":
   case "connexionError":
+  case "inscription":
+  case "inscriptionError":
+  case "inscriptionLogge":
     ControllerDoctolib::$action();
     break;
 

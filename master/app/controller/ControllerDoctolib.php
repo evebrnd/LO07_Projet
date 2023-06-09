@@ -132,6 +132,78 @@ class ControllerDoctolib
          echo ("ControllerDoctolib : deconnexion : vue = $vue");
       require($vue);
    }
+
+
+
+   
+   // ---- Inscription : affiche le formulaire d'inscription
+   public static function inscription()
+   {
+      // Récupération des données de l'user connecté
+      session_start();
+      if ($_SESSION['login'] != 'NULL') {
+         $login = $_SESSION['login'];
+         $tempUser = ModelPersonne::getOneLogin($login);
+      }
+
+      $results = ModelSpecialite::getAll();
+
+      // Construction chemin de la vue
+      include 'config.php';
+      $vue = $root . '/app/view/site/viewInscription.php';
+      if (DEBUG)
+         echo ("ControllerDoctolib : viewInscription : vue = $vue");
+      require($vue);
+   }
+
+
+
+   // ---- Inscription : affiche le résultat de la tentative d'inscription
+   public static function inscriptionLogge()
+   {
+      // Vérifications des identifiants
+      session_start();
+      if ($_SESSION['login'] != 'NULL') {
+            $login = $_SESSION['login'];
+            $tempUser = ModelPersonne::getOneLogin($login);
+         }
+      $signInResults = ModelPersonne::checkLogin($_GET['login']);
+
+      // Bons identifiants
+      if ($signInResults == null) {
+         $index = ModelPersonne::insert($_GET['nom'], $_GET['prenom'], $_GET['adresse'], $_GET['login'], $_GET['password'], $_GET['statut'], $_GET['specialite']);
+         $path = '/app/view/viewDoctolibAccueil.php';
+      }
+      // Identifiants erronés
+      else {
+         $results = ModelSpecialite::getAll();
+         $path = '/app/view/site/viewInscriptionError.php';
+      }
+
+      // Construction chemin de la vue
+      include 'config.php';
+      $vue = $root . $path;
+      if (DEBUG)
+         echo ("ControllerDoctolib : viewInscriptionError : vue = $vue");
+      require($vue);
+   }
+
+
+
+   // ---- Inscription : affiche le résultat de la tentative d'inscription
+   public static function inscriptionError()
+   {
+      // Vérifications des identifiants
+      session_start();
+
+
+      // Construction chemin de la vue
+      include 'config.php';
+      $vue = $root . '/app/view/viewInscriptionError.php';
+      if (DEBUG)
+         echo ("ControllerDoctolib : viewInscriptionError : vue = $vue");
+      require($vue);
+   }
 }
 ?>
 <!-- ----- fin ControllerDoctolib -->
