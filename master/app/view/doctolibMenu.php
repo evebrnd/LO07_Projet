@@ -93,6 +93,7 @@
           <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Innovations</a>
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="router.php?action=propositionsFonctionnalites">Proposition d'amélioration</a></li>
+            <li><a class="dropdown-item" href="router.php?action=desinscriptionForm">Se désinscrire</a></li>
           </ul>
         </li>
 

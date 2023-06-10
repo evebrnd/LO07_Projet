@@ -280,6 +280,25 @@ class ModelPersonne
             return -1;
         }
     }
+
+    public static function delete($login)
+    {
+        try {
+            $database = Model::getInstance();
+
+            // suppression d'un tuple
+            $query = "delete from personne where login = :login";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'login' => $login
+            ]);
+            $_SESSION['login']='NULL';
+            return 1;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
+        }
+    }
 }
 ?>
 <!-- ----- fin ModelPersonne -->
