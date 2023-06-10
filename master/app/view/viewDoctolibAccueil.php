@@ -4,7 +4,7 @@
 <body>
   <div class="container">
     <?php
-    include $root . '/app/view/doctolibMenu.php';
+    include $root . '/app/view/fragment/fragmentDoctolibMenu.php';
     include 'fragment/fragmentDoctolibJumbotron.html';
     ?>
   </div>   
