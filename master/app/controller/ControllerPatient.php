@@ -121,17 +121,23 @@ class ControllerPatient
         if ($_SESSION['login'] != 'NULL') {
             $login = $_SESSION['login'];
             $tempUser = ModelPersonne::getOneLogin($login);
-
-            // Récupération des rendez-vous du patient
-            $results = ModelRendezVous::getMyRdvPatient($tempUser->getId());
-            $patients = array();
-            // Insertion des informations du praticien associé à chaque rendez-vous
-            foreach ($results as $patientRdv) {
-                $index = $patientRdv->getPraticienId();
-                $rdv_date = $patientRdv->getRdvDate();
-                $patients[$rdv_date] = ModelPersonne::getOneId($index);
+            if ($tempUser->getStatut() == ModelPersonne::PATIENT)
+            {
+                // Récupération des rendez-vous du patient
+                $results = ModelRendezVous::getMyRdvPatient($tempUser->getId());
+                $patients = array();
+                // Insertion des informations du praticien associé à chaque rendez-vous
+                foreach ($results as $patientRdv) {
+                    $index = $patientRdv->getPraticienId();
+                    $rdv_date = $patientRdv->getRdvDate();
+                    $patients[$rdv_date] = ModelPersonne::getOneId($index);
+                }
+                $path= '/app/view/ameliorations/viewAnnulerRdv.php';
             }
-            $path= '/app/view/ameliorations/viewAnnulerRdv.php';
+            else {
+                $path = '/app/view/ameliorations/viewAnnulerRdvError.php';
+            }
+            
          }
 
         else {
