@@ -12,7 +12,7 @@ class ControllerDoctolib
    {
       // Récupération des données de l'user connecté
       session_start();
-      if ($_SESSION['login'] != 'NULL') {
+      if ($_SESSION['login'] != null) {
          $login = $_SESSION['login'];
          $tempUser = ModelPersonne::getOneLogin($login);
       }
@@ -205,7 +205,7 @@ class ControllerDoctolib
       require($vue);
    }
 
-   // ---- Inscription : affiche le formulaire d'inscription
+   // ---- Desinscription : affiche le formulaire de desinscription
 
    public static function desinscriptionForm()
    {
@@ -214,10 +214,10 @@ class ControllerDoctolib
       if ($_SESSION['login'] != 'NULL') {
          $login = $_SESSION['login'];
          $tempUser = ModelPersonne::getOneLogin($login);
-         $path = '/app/view/site/viewDesinscription.php';
+         $path = '/app/view/ameliorations/viewDesinscription.php';
       }
       else {
-         $path = '/app/view/site/viewDesinscriptionError.php';
+         $path = '/app/view/ameliorations/viewDesinscriptionError.php';
       }
 
       // Construction chemin de la vue
@@ -240,7 +240,7 @@ class ControllerDoctolib
 
       // Construction chemin de la vue
       include 'config.php';
-      $vue = $root . '/app/view/site/viewDesinscriptionFaite.php';
+      $vue = $root . '/app/view/ameliorations/viewDesinscriptionFaite.php';
       if (DEBUG)
          echo ("ControllerDoctolib : viewDesinscriptionFaite : vue = $vue");
       require($vue);

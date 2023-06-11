@@ -299,6 +299,27 @@ class ModelPersonne
             return -1;
         }
     }
+
+    public static function id($nom, $prenom)
+    {
+        try {
+            $database = Model::getInstance();
+
+            // suppression d'un tuple
+            $query = "select id from personne where nom = :nom and prenom = :prenom";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'nom' => $nom,
+                'prenom' => $prenom
+
+            ]);
+            $id = $statement->fetch(PDO::FETCH_ASSOC);
+            return $id['id'];
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return -1;
+        }
+    }
 }
 ?>
 <!-- ----- fin ModelPersonne -->

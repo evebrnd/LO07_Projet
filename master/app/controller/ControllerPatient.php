@@ -112,6 +112,65 @@ class ControllerPatient
         $vue = $root . '/app/view/patient/viewRdvPris.php';
         include($vue);
     }
+
+    // ---- annuler un rdv : récupération des rdv du patient
+    public static function patientAnnulerRdv()
+    {
+        // Récupération des données de l'user connecté
+        session_start();
+        if ($_SESSION['login'] != 'NULL') {
+            $login = $_SESSION['login'];
+            $tempUser = ModelPersonne::getOneLogin($login);
+
+            // Récupération des rendez-vous du patient
+            $results = ModelRendezVous::getMyRdvPatient($tempUser->getId());
+            $patients = array();
+            // Insertion des informations du praticien associé à chaque rendez-vous
+            foreach ($results as $patientRdv) {
+                $index = $patientRdv->getPraticienId();
+                $rdv_date = $patientRdv->getRdvDate();
+                $patients[$rdv_date] = ModelPersonne::getOneId($index);
+            }
+            $path= '/app/view/ameliorations/viewAnnulerRdv.php';
+         }
+
+        else {
+            $path = '/app/view/ameliorations/viewAnnulerRdvError.php';
+        }
+        
+
+        // Construction chemin de la vue
+        include 'config.php';
+        $vue = $root . $path;
+        if (DEBUG)
+            echo ("ControllerPatient : viewAnnulerRdv : vue = $vue");
+        require($vue);
+    }
+
+    // ---- annuler rdv : annulation du rdv choisi
+    public static function rdvAnnule()
+    {
+        // Récupération des données de l'user connecté
+        session_start();
+        $login = $_SESSION['login'];
+        $tempUser = ModelPersonne::getOneLogin($login);
+
+        $rdv = $_GET['rdv'];
+
+        // Divise la valeur sélectionnée en nom, prénom et date
+        list($nom, $prenom, $date, $a, $heure) = explode(" ", $rdv);
+        $rdv_date = $date . " à " . $heure;
+
+        $praticien_id = intval(ModelPersonne :: id($nom, $prenom));
+        
+        $result = ModelRendezVous::annulationRdv($praticien_id, $rdv_date);
+        
+        // Construction chemin de la vue
+        include 'config.php';
+        $vue = $root . '/app/view/ameliorations/viewRdvAnnule.php';
+        include($vue);
+    }
+
 }
 ?>
 <!-- ----- fin ControllerPatient -->

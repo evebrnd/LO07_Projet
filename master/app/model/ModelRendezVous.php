@@ -230,6 +230,8 @@ class ModelRendezVous
             if (!is_numeric($patient_id) || !is_numeric($praticien_id)) {
                 throw new Exception("Les identifiants patient et praticien doivent être des nombres.");
             }
+
+            // modification du rdv
             $query = "UPDATE rendezvous SET patient_id = :patient_id WHERE rdv_date= :rdv_date and praticien_id = :praticien_id";
             $statement = $database->prepare($query);
             $statement->execute([
@@ -238,6 +240,7 @@ class ModelRendezVous
                 'praticien_id' => $praticien_id
             ]);
 
+            // on récupere le  rdv modifié pour l'afficher
             $query = "SELECT * FROM rendezvous WHERE rdv_date = :rdv_date AND praticien_id = :praticien_id";
             $statement = $database->prepare($query);
             $statement->execute([
@@ -247,6 +250,25 @@ class ModelRendezVous
 
             $results = $statement->fetchAll(PDO::FETCH_CLASS, "ModelRendezVous");
             return $results;
+        } catch (PDOException $e) {
+            printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
+            return NULL;
+        }
+    }
+
+    public static function annulationRdv($praticien_id, $date)
+    {
+        try {
+            $database = Model::getInstance();
+           
+            $query = "UPDATE rendezvous SET patient_id = 0 WHERE rdv_date= :rdv_date and praticien_id = :praticien_id";
+            $statement = $database->prepare($query);
+            $statement->execute([
+                'rdv_date' => $date,
+                'praticien_id' => $praticien_id
+            ]);
+
+           return 1;
         } catch (PDOException $e) {
             printf("%s - %s<p/>\n", $e->getCode(), $e->getMessage());
             return NULL;

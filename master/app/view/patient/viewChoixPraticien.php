@@ -14,7 +14,8 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
         <form role="form" method='get' action='router.php'>
             <div class="form-group">
                 <input type="hidden" name='action' value='patientReadId'>
-                <label for="id">id : </label> <select class="form-control" id='praticien_id' name='praticien_id' style="width: 200px">
+                <label for="id">id : </label> 
+                <select class="form-control" id='praticien_id' name='praticien_id' style="width: 200px">
                     <?php
                     $personneModel = new ModelPersonne();
 

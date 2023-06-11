@@ -94,6 +94,7 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="router.php?action=propositionsFonctionnalites">Proposition d'amélioration</a></li>
             <li><a class="dropdown-item" href="router.php?action=desinscriptionForm">Se désinscrire</a></li>
+            <li><a class="dropdown-item" href="router.php?action=patientAnnulerRdv">Annuler un RDV</a></li>
           </ul>
         </li>
 
@@ -105,6 +106,7 @@
             <li><a class="dropdown-item" href="router.php?action=connexionLogin">Log in</a></li>
             <li><a class="dropdown-item" href="router.php?action=inscription">S'inscrire</a></li>
             <li><a class="dropdown-item" href="router.php?action=deconnexion">Déconnexion</a></li>
+            
           </ul>
         </li>
 

@@ -43,6 +43,8 @@ switch ($action) {
   case "patientChoixPraticien":
   case "patientReadId":
   case "patientUpdateRdv":
+  case "patientAnnulerRdv":
+  case "rdvAnnule":
     ControllerPatient::$action($args);
     break;
 
