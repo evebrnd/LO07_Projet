@@ -38,4 +38,5 @@ Ce projet a été réalisé par :
 - [x] Prendre un rdv avec un praticien
 
 ## Améliorations
-- [ ] Innovations éventuelles : annuler un rdv, modifier la manière d'ajouter des dispos, se désinscrire
+- [x] Innovations éventuelles : annuler un rdv, modifier la manière d'ajouter des dispos, se désinscrire
+- [ ] amélioration MVC

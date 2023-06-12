@@ -280,7 +280,7 @@ class ModelPersonne
             return -1;
         }
     }
-
+    // ---- supprime un tuple personne qui correspond au login donné
     public static function delete($login)
     {
         try {
@@ -300,6 +300,7 @@ class ModelPersonne
         }
     }
 
+        // ---- récupère l'id d'une personne a partir de son nom et son prénom
     public static function id($nom, $prenom)
     {
         try {

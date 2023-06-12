@@ -158,6 +158,7 @@ class ModelRendezVous
         try {
             $database = Model::getInstance();
 
+            // ---- détermine l'id de la nouvelle dispo
             $query = "SELECT MAX(id) AS last_id FROM rendezvous";
             $statement = $database->prepare($query);
             $statement->execute();
@@ -165,20 +166,25 @@ class ModelRendezVous
             $last_id = $result['last_id'];
             $new_id = $last_id + 1;
 
-
-            $query = "INSERT INTO `rendezvous` VALUES
-            (:id, 0, :praticien_id, :rdv_date)";
+            $query = "SELECT * FROM rendezvous WHERE rdv_date = :rdv_date AND praticien_id = :praticien_id";
             $statement = $database->prepare($query);
-            $statement->execute([
-                'id' => $new_id,
-                'praticien_id' => $praticien_id,
-                'rdv_date' => $creneau
-            ]);
+            $statement->execute(['rdv_date' => $creneau, 'praticien_id' => $praticien_id]);
+            
+            // ---- vérifie si le créneau existe déjà : si oui on ne l'insère pas
+            if ($statement->rowCount() > 0) {
+                $results = "Le créneau $creneau existe déjà\n";
+            } else {
 
-            $query = "SELECT * FROM `rendezvous` WHERE id = :id";
-            $statement = $database->prepare($query);
-            $statement->execute(['id' => $new_id]);
-            $results = $statement->fetch(PDO::FETCH_ASSOC);
+                $query = "INSERT INTO `rendezvous` VALUES
+                (:id, 0, :praticien_id, :rdv_date)";
+                $statement = $database->prepare($query);
+                $statement->execute([
+                    'id' => $new_id,
+                    'praticien_id' => $praticien_id,
+                    'rdv_date' => $creneau
+                ]);
+                $results = "le créneau  $creneau  a été inséré\n";
+            }
 
             return $results;
         } catch (PDOException $e) {

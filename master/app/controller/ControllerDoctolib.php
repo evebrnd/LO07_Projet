@@ -227,6 +227,7 @@ class ControllerDoctolib
          echo ("ControllerDoctolib : viewDesinscription : vue = $vue");
       require($vue);
    }
+   // ---- supprime l'utilisateur de la base de donnée
    public static function desinscription()
    {
       // Récupération des données de l'user connecté

@@ -122,6 +122,7 @@ class ControllerPatient
             $login = $_SESSION['login'];
             $tempUser = ModelPersonne::getOneLogin($login);
             if ($tempUser->getStatut() == ModelPersonne::PATIENT)
+            // ---- verifie si la personne est connectée et si c'est un patient
             {
                 // Récupération des rendez-vous du patient
                 $results = ModelRendezVous::getMyRdvPatient($tempUser->getId());

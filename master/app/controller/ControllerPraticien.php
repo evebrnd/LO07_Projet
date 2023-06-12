@@ -62,11 +62,13 @@ class ControllerPraticien
         $formattedDate = $heureDeBase->format('Y-m-d H\hi');
 
         // Ajout des créneaux dans la base de données
+        $resultsArray = array();
         foreach (range(1, $rdv_nombre) as $index) {
             $creneau = $heureDeBase->format('Y-m-d H\hi');
             $creneaux[] = $creneau;
             $heureDeBase->add(new DateInterval('PT1H'));
             $results = ModelRendezVous::ajoutDispo($praticien_id, $creneau);
+            $resultsArray[] = $results;
         }
 
         // Construction chemin de la vue
