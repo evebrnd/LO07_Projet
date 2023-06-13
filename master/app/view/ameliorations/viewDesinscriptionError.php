@@ -13,7 +13,7 @@ require($root . '/app/view/fragment/fragmentDoctolibHeader.html');
 
     <form role="form" method="get" action='router.php'>
       <div class="form-group">
-        <input type="hidden" name='action' value='desinscription'>
+        <input type="hidden" name='action' value='desinscriptionForm'>
         <div>
             <label> Voulez vous vous désinscrire ?</label>
             <br/>
